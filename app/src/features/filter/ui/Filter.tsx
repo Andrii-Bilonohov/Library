@@ -22,10 +22,10 @@ export const Filter = ({ searchQuery }: FilterProps) => {
         return acc;
     }, {} as Record<string, string>);
 
-    const isDisabled = !searchQuery || searchQuery.trim() === "";
+    const isDisabled = !searchQuery.trim();
 
     return (
-        <div className="bg-[#02142B] p-6 rounded-2xl shadow-lg border border-cyan-700/40 w-full md:w-80">
+        <div className="bg-[#02142B] p-4 md:p-6 rounded-2xl shadow-lg border border-cyan-700/40 w-full md:w-80">
             <h3
                 className="text-xl font-semibold text-cyan-300 cursor-pointer flex justify-between items-center"
                 onClick={() => setOpen(o => !o)}
@@ -34,16 +34,21 @@ export const Filter = ({ searchQuery }: FilterProps) => {
                 <span className="text-2xl">{open ? "−" : "+"}</span>
             </h3>
 
-            {open && (
-                <div className="mt-4 space-y-6">
-                    {/* Languages */}
+            <div
+                className={`transition-all duration-300 overflow-hidden ${
+                    open ? "max-h-[1200px] mt-4" : "max-h-0"
+                }`}
+            >
+                <div className="space-y-6">
                     <div>
                         <p className="text-lg font-medium text-white mb-2">Languages</p>
                         <div className="space-y-2 max-h-40 overflow-auto pr-2 custom-scrollbar">
                             {Object.entries(languages).map(([lang, isSelected]) => (
                                 <label
                                     key={lang}
-                                    className={`flex items-center gap-2 text-cyan-100 hover:text-white cursor-pointer ${isDisabled ? "opacity-50 cursor-not-allowed" : ""}`}
+                                    className={`flex items-center gap-2 text-cyan-100 hover:text-white cursor-pointer ${
+                                        isDisabled ? "opacity-50 cursor-not-allowed" : ""
+                                    }`}
                                 >
                                     <input
                                         type="checkbox"
@@ -58,14 +63,15 @@ export const Filter = ({ searchQuery }: FilterProps) => {
                         </div>
                     </div>
 
-                    {/* Subjects */}
                     <div>
                         <p className="text-lg font-medium text-white mb-2">Subjects</p>
                         <div className="space-y-2 max-h-40 overflow-auto pr-2 custom-scrollbar">
                             {Object.entries(subjects).map(([sub, isSelected]) => (
                                 <label
                                     key={sub}
-                                    className={`flex items-center gap-2 text-cyan-100 hover:text-white cursor-pointer ${isDisabled ? "opacity-50 cursor-not-allowed" : ""}`}
+                                    className={`flex items-center gap-2 text-cyan-100 hover:text-white cursor-pointer ${
+                                        isDisabled ? "opacity-50 cursor-not-allowed" : ""
+                                    }`}
                                 >
                                     <input
                                         type="checkbox"
@@ -81,14 +87,14 @@ export const Filter = ({ searchQuery }: FilterProps) => {
                     </div>
 
                     <button
-                        className="mt-4 px-4 py-2 bg-cyan-500 text-white rounded hover:bg-cyan-600 disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="w-full px-4 py-2 bg-cyan-500 text-white rounded hover:bg-cyan-600 disabled:opacity-50 disabled:cursor-not-allowed"
                         onClick={resetFilters}
                         disabled={isDisabled}
                     >
                         Reset
                     </button>
                 </div>
-            )}
+            </div>
         </div>
     );
 };
