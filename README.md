@@ -28,6 +28,7 @@ The project was created to practice scalable frontend architecture, API integrat
 - Feature-Sliced Design (FSD)
 
 ## Styling
+- Tailwind
 - CSS3
 - Responsive Layout
 
