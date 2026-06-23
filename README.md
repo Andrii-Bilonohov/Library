@@ -1,4 +1,4 @@
-````md
+md
 # 📚 Library
 
 Modern book search application built with React, TypeScript, and OpenLibrary API.
@@ -104,5 +104,4 @@ npm run dev
 
 If you like this project, leave a star ⭐
 
-```
-```
+
